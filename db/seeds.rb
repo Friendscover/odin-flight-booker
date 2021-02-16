@@ -11,3 +11,4 @@ airports = ["NYC", "SFO", "SEA", "JFK", "ABC", "SFS"]
 airports.each do |port|
   Airport.create(code: port)
 end
+
