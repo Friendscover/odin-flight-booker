@@ -6,9 +6,19 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-airports = ["NYC", "SFO", "SEA", "JFK", "ABC", "SFS"]
+# Seeding random Airports for the DB
+Flight.delete_all
+
+airports = ["NYC", "SFO", "SEA", "JFK", "ABC", "SFS", "ACD"]
 
 airports.each do |port|
   Airport.create(code: port)
+end
+
+# Building Flight associations for each Airport
+airports = Airport.all
+
+airports.each do |airport|
+  airport.arriving_flights.build(start_airport: Airport.last, finish_airport: Airport.last).save
 end
 
