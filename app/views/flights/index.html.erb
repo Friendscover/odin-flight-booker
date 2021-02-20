@@ -1,0 +1,21 @@
+<h2> Search for Flights! </h2>
+<%= form_with url: "/", method: :get do |form| %>
+  <%= form.label :id; "Search for Flights" %><br />
+  <%= form.text_field :id %>
+  <%= form.select :passengers, ["1", "2", "3", "4"] %>
+  <%= select_tag(:start_airport_id, options_for_select(@to_airport_options)) %>
+  <%= select_tag(:finish_airport_id, options_for_select(@to_airport_options)) %><br />
+  <%= select_datetime(Time.now, order:[:year, :month, :day]) %>
+  <%= form.submit "Search" %>
+<% end %>
+
+<p>
+  <% unless params[:id].nil? %>
+    <% f = @flights.last %>
+    <%= f.start_airport.code %>
+    <%= params[:passengers] %>
+    <%= params[:start_airport_id] %>
+    <%= params[:start] %>
+    <%= f.finish_airport.code %>
+  <% end %>
+</p>

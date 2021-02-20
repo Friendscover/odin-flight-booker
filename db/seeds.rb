@@ -8,6 +8,7 @@
 
 # Seeding random Airports for the DB
 Flight.delete_all
+Airport.delete_all
 
 airports = ["NYC", "SFO", "SEA", "JFK", "ABC", "SFS", "ACD"]
 
@@ -17,8 +18,9 @@ end
 
 # Building Flight associations for each Airport
 airports = Airport.all
+i = Airport.first.id
 
-airports.each do |airport|
-  airport.arriving_flights.build(start_airport: Airport.last, finish_airport: Airport.last).save
+airports.each_with_index do |airport, index|
+  airport.arriving_flights.build(start_airport: Airport.find(i + index), finish_airport: Airport.find(i + 1)).save
 end
 
