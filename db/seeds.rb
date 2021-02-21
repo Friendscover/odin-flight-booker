@@ -10,7 +10,7 @@
 Flight.delete_all
 Airport.delete_all
 
-airports = ["NYC", "SFO", "SEA", "JFK", "ABC", "SFS", "ACD"]
+airports = ["NYC", "SFO", "SEA", "JFK", "ABC", "SFS", "ACD", "ZTO", "BER", "MUN"]
 
 airports.each do |port|
   Airport.create(code: port)
@@ -19,8 +19,9 @@ end
 # Building Flight associations for each Airport
 airports = Airport.all
 i = Airport.first.id
+j = Airport.last.id
 
 airports.each_with_index do |airport, index|
   airport.arriving_flights.build(start_airport: Airport.find(i + index), finish_airport: Airport.find(i + 1)).save
+  airport.departing_flights.build(start_airport: Airport.find(j - index), finish_airport: Airport.find(j - index)).save
 end
-
