@@ -16,12 +16,13 @@ airports.each do |port|
   Airport.create(code: port)
 end
 
+puts "Generating random flights. This may take a while"
 # Building Flight associations for each Airport
 airports = Airport.all
-i = Airport.first.id
-j = Airport.last.id
 
-airports.each_with_index do |airport, index|
-  airport.arriving_flights.build(start_airport: Airport.find(i + index), finish_airport: Airport.find(i + 1)).save
-  airport.departing_flights.build(start_airport: Airport.find(j - index), finish_airport: Airport.find(j - index)).save
+20.times do 
+  airports.each_with_index do |airport|
+    airport.arriving_flights.build(start_airport: Airport.find(airports.sample.id), finish_airport: Airport.find(airports.sample.id), start: (Time.now + 3.days), flight_duration: (rand 200)).save
+    airport.departing_flights.build(start_airport: Airport.find(airports.sample.id), finish_airport: Airport.find(airports.sample.id), start: (Time.now + 3.days), flight_duration: (rand 200)).save
+  end
 end

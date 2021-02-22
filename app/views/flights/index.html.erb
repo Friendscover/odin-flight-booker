@@ -1,19 +1,24 @@
 <h2> Search for Flights! </h2>
 <%= form_with url: "/", method: :get do |form| %>
   <%= form.label :id; "Search for Flights" %><br />
-  <%= form.select :passengers, ["1", "2", "3", "4"] %>
-  <%= select_tag(:start_airport_id, options_for_select(@to_airport_options)) %>
-  <%= select_tag(:finish_airport_id, options_for_select(@to_airport_options)) %><br />
+  From: <%= select_tag(:start_airport_id, options_for_select(@to_airport_options)) %>
+  To: <%= select_tag(:finish_airport_id, options_for_select(@to_airport_options)) %><br />
+  Passengers? <%= form.select :passengers, ["1", "2", "3", "4"] %>
+  <p> When do you wanna travel? </p>
   <%= select_datetime(Time.now, order:[:year, :month, :day]) %>
   <%= form.submit "Search" %>
 <% end %>
 
+<h4> We found <%= @flights.count %> flights! </h4>
+
 <p>
   <% @flights.each do |f| %>
     <strong><%= f.start_airport.code %></strong> to 
-    <strong><%= f.finish_airport.code %></strong><br />
+    <strong><%= f.finish_airport.code %></strong>
+    Starts at: <%= f.start.to_s(:long) %><br />
   <% end %>
   <%= params[:passengers] %>
   <%= params[:start_airport_id] %>
   <%= params[:finish_airport_id] %>
+  # <%= params[:date] %>
 </p>

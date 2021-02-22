@@ -8,7 +8,7 @@ class FlightsController < ApplicationController
     if params.nil?
       return Flight.all
     else
-      Flight.all.where(start_airport_id: params[:start_airport_id])
+      Flight.all.where(start_airport_id: params[:start_airport_id], finish_airport_id: params[:finish_airport_id], start: params[:date[]]
     end
   end
 end
