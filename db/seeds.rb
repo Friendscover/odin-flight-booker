@@ -22,7 +22,7 @@ airports = Airport.all
 
 20.times do 
   airports.each_with_index do |airport|
-    airport.arriving_flights.build(start_airport: Airport.find(airports.sample.id), finish_airport: Airport.find(airports.sample.id), start: (Time.now + 3.days), flight_duration: (rand 200)).save
-    airport.departing_flights.build(start_airport: Airport.find(airports.sample.id), finish_airport: Airport.find(airports.sample.id), start: (Time.now + 3.days), flight_duration: (rand 200)).save
+    airport.arriving_flights.build(start_airport: Airport.find(airports.sample.id), finish_airport: Airport.find(airports.sample.id), start: (Time.now + (rand 10).days), flight_duration: (rand 200)).save
+    airport.departing_flights.build(start_airport: Airport.find(airports.sample.id), finish_airport: Airport.find(airports.sample.id), start: (Time.now + (rand 10).days), flight_duration: (rand 200)).save
   end
 end

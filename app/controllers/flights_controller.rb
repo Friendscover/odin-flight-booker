@@ -6,9 +6,15 @@ class FlightsController < ApplicationController
 
   def search_flights
     if params.nil?
-      return Flight.all
+      return Flight.first(10)
     else
-      Flight.all.where(start_airport_id: params[:start_airport_id], finish_airport_id: params[:finish_airport_id], start: params[:date[]]
+      Flight.where(flight_params)
     end
+  end
+
+  private
+
+  def flight_params
+    params.permit(:start_airport_id, :finish_airport_id, :start)
   end
 end
