@@ -5,16 +5,10 @@ class FlightsController < ApplicationController
   end
 
   def search_flights
-    if params.nil?
-      return Flight.first(10)
+    if params[:commit].present?
+      Flight.where("start_airport_id = ? AND finish_airport_id = ? AND start BETWEEN ? AND ?", params[:start_airport_id], params[:finish_airport_id], DateTime.parse(params[:start]).beginning_of_day, DateTime.parse(params[:start]).end_of_day)
     else
-      Flight.where(flight_params)
+      return Flight.last(10)
     end
-  end
-
-  private
-
-  def flight_params
-    params.permit(:start_airport_id, :finish_airport_id, :start)
   end
 end
