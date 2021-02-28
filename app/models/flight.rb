@@ -5,4 +5,8 @@ class Flight < ApplicationRecord
   def start_time_formatted
     start.strftime("%d/%m/%Y")
   end
+
+  def display_flight_info
+    "Starts at: #{start.strftime('%d/%m/%Y-%H:%M')} at #{start_airport.code} and arrives at #{finish_airport.code}"
+  end
 end
