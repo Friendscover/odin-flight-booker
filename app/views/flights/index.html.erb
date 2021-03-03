@@ -26,7 +26,7 @@
 </p>
 
 <p>
-  <%= form_with model: @flight, method: :get do |f| %>
+  <%= form_with model: @flight, url: new_booking_path, method: :get do |f| %>
     <%= f.collection_radio_buttons :flight_id, @flights.order(:start), :id, :display_flight_info %> </br>
     <%= f.submit "I wann fly" %>
   <% end %>
