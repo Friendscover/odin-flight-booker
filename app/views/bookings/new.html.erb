@@ -1,0 +1,17 @@
+<h1> Your Flight Details! </h1>
+
+<p>
+  Your flight starts at: <%= @flight.start %>
+  in: <%= @flight.start_airport.code %> and arrives in
+  <%= @flight.finish_airport.code %> after <%= @flight.flight_duration %> minutes! <br />
+  <%= params %>
+</p>
+
+<%= form_with model: @booking do |f| %>
+  <%= f.fields_for :passengers do |booking_form| %>
+    <%= booking_form.text_field :name, placeholder: "Name of the Passenger" %>
+    <%= booking_form.text_field :email, placeholder: "Email Adress" %>
+  <% end %>
+  <%= f.submit "Submit your passenger info and book this flight!" %>
+<% end %>
+

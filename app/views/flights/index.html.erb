@@ -5,7 +5,6 @@
   <%= f.label :id; "Search for Flights" %><br />
   From: <%= select_tag(:start_airport_id, options_for_select(@to_airport_options)) %>
   To: <%= select_tag(:finish_airport_id, options_for_select(@to_airport_options)) %><br />
-  Passengers? <%= f.select :passengers, ["1", "2", "3", "4"] %>
   <p> When do you wanna travel? </p>
   <%= f.collection_select :start, Flight.all.order("start ASC"), :start, :start_time_formatted %>
   <%= f.submit "Search" %>
@@ -26,8 +25,9 @@
 </p>
 
 <p>
-  <%= form_with model: @flight, url: new_booking_path, method: :get do |f| %>
+  <%= form_with model: @bookings, url: new_booking_path, method: :get do |f| %>
     <%= f.collection_radio_buttons :flight_id, @flights.order(:start), :id, :display_flight_info %> </br>
+    Passengers? <%= f.select :passengers, ["1", "2", "3", "4"] %>
     <%= f.submit "I wann fly" %>
   <% end %>
 </p>
