@@ -1,0 +1,13 @@
+<%= link_to "All Flights", root_url %>
+<h1> Your Flight with ID: <%= @booking.id %> </h1>
+
+<p>
+  All Passenngers: <br />
+  <% @booking.passengers.each do |p| %>
+    <strong> Name: </strong> <%= p.name %>
+    <strong> Email: </strong><%= p.email %><br />
+  <% end %>
+  <%= @booking.flight.start_airport.code %> to
+  <%= @booking.flight.finish_airport.code %> starts at
+  <%= @booking.flight.start %>
+</p>

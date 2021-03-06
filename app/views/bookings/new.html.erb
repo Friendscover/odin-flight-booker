@@ -4,7 +4,6 @@
   Your flight starts at: <%= @flight.start %>
   in: <%= @flight.start_airport.code %> and arrives in
   <%= @flight.finish_airport.code %> after <%= @flight.flight_duration %> minutes! <br />
-  <%= params %>
 </p>
 
 <%= form_with model: @booking do |f| %>

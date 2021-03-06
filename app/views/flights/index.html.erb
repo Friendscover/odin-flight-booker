@@ -6,7 +6,7 @@
   From: <%= select_tag(:start_airport_id, options_for_select(@to_airport_options)) %>
   To: <%= select_tag(:finish_airport_id, options_for_select(@to_airport_options)) %><br />
   <p> When do you wanna travel? </p>
-  <%= f.collection_select :start, Flight.all.order("start ASC"), :start, :start_time_formatted %>
+  <%= select_tag(:start, options_for_select(@start_options)) %>
   <%= f.submit "Search" %>
 <% end %>
 

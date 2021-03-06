@@ -2,13 +2,17 @@ class BookingsController < ApplicationController
   def new
     @flight = Flight.find(params[:flight_id])
     @booking = Booking.new
-    2.times { @booking.passengers.build }
+    params[:passengers].to_i.times { @booking.passengers.build }
   end
 
   def create
     @booking = Booking.create(booking_params)
 
-    redirect_to bookings_path
+    redirect_to booking_path(@booking)
+  end
+
+  def show
+    @booking = Booking.find(params[:id])
   end
 
   private
