@@ -8,6 +8,7 @@
 </p>
 
 <%= form_with model: @booking do |f| %>
+  <%= f.hidden_field(:flight_id, value: @flight.id) %>
   <%= f.fields_for :passengers do |booking_form| %>
     <%= booking_form.text_field :name, placeholder: "Name of the Passenger" %>
     <%= booking_form.text_field :email, placeholder: "Email Adress" %>
