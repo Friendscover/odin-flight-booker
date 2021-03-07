@@ -13,18 +13,6 @@
 <h4> We found <%= @flights.count %> flights! </h4>
 
 <p>
-  <% @flights.each do |f| %>
-    <strong><%= f.start_airport.code %></strong> to 
-    <strong><%= f.finish_airport.code %></strong>
-    Starts at: <%= f.start.to_s(:long) %><br />
-  <% end %>
-  <%= params[:passengers] %>
-  <%= params[:start_airport_id] %>
-  <%= params[:finish_airport_id] %>
-  <%= params[:start] %>
-</p>
-
-<p>
   <%= form_with model: @bookings, url: new_booking_path, method: :get do |f| %>
     <%= f.collection_radio_buttons :flight_id, @flights.order(:start), :id, :display_flight_info %> </br>
     Passengers? <%= f.select :passengers, ["1", "2", "3", "4"] %>
