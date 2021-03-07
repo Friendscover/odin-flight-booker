@@ -2,7 +2,7 @@ class FlightsController < ApplicationController
   def index
     @flights = search_flights
     @to_airport_options = Airport.all.map { |a| [a.code, a.id] }
-    @start_options = Flight.all.map { |a| DateTime.parse(a.start.to_s).beginning_of_day }.uniq
+    @start_options = Flight.all.map { |a| Date.parse(a.start.to_s) }.uniq
   end
 
   def search_flights
