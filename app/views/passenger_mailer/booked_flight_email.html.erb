@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Welcome to odinflightbooker.com, <%= @passenger.name %></h1>
+    <p>
+      You have successfully booked a flight!
+    </p>
+    <p>
+      To check the status of your flight, just follow this link. <%= booking_url(@booking, host: 'odinflightbooker.com') %>
+    </p>
+    <p>
+      Your booking ID ist <%= @booking.id %>!
+    </p>
+    <p>Thanks for booking and have a great day!</p>
+  </body>
+</html>

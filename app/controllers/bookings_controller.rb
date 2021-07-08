@@ -8,6 +8,8 @@ class BookingsController < ApplicationController
   def create
     @booking = Booking.create(booking_params)
 
+    PassengerMailer.with(booking: @booking).booked_flight_email.deliver_later
+
     redirect_to booking_path(@booking)
   end
 

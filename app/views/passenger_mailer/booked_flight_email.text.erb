@@ -1,0 +1,10 @@
+Welcome to odinflightbooker.com, <%= @passenger.name %>
+===============================================
+
+You have successfully booked a flight!
+
+To check the status of your flight, just follow this link:
+
+<%= booking_url(@booking, host: 'odinflightbooker.com') %>
+
+Thanks for booking and have a great day!
